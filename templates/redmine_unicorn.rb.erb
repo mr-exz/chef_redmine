@@ -1,0 +1,20 @@
+worker_processes 1
+working_directory "<%= node["redmine"]["home"] %>"
+timeout 30
+preload_app true
+
+listen "<%= node["redmine"]["home"] %>/tmp/sockets/unicorn.sock", :backlog => 64
+pid "<%= node["redmine"]["home"] %>/tmp/pids/unicorn.pid"
+
+stderr_path "<%= node["redmine"]["home"] %>/log/unicorn.stderr.log"
+stdout_path "<%= node["redmine"]["home"] %>/log/unicorn.stdout.log"
+
+before_fork do |server, worker|
+  defined?(ActiveRecord::Base) and
+      ActiveRecord::Base.connection.disconnect!
+end
+
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and
+      ActiveRecord::Base.establish_connection
+end

@@ -1,0 +1,11 @@
+production:
+ email_delivery:
+  delivery_method: :smtp
+  smtp_settings:
+   enable_starttls_auto: true
+   address: <%= node["redmine"]["configuration"]["smtp_address"] %>
+   port: <%= node["redmine"]["configuration"]["smtp_port"] %>
+   domain: <%= node["redmine"]["configuration"]["domain"] %>
+   authentication: :plain
+   user_name: <%= node["redmine"]["configuration"]["smtp_user"] %>
+   password: <%= node["redmine"]["configuration"]["smtp_password"] %>
