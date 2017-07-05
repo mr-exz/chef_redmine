@@ -4,7 +4,7 @@
 
 * OS: CentOS 7
 * Ruby: 2.3.4
-* Redmine: 3.3.3
+* Redmine: 3.3.3,3.4.0
 * cookbook: firewalld
 
 ## Attributes
